@@ -2,6 +2,30 @@ declare interface GetActiveScreenResolutionResult {
 	x: number;
 	y: number;
 }
+declare interface IOverlayParams {
+	enableDepth: boolean,
+	deleteWhenUnused: boolean,
+	keepNonBlurred: boolean,
+	processAttachments: boolean,
+	fill: { enable: boolean, color: number },
+	noise: { enable: boolean, size: number, speed: number, intensity: number },
+	outline: { enable: boolean, color: number, width: number, blurRadius: number, blurIntensity: number };
+	wireframe: { enable: boolean }
+}
+declare interface IEntityOverlay {
+	readonly valid: boolean;
+	readonly handle: number;
+
+	update: (params: IOverlayParams) => void;
+
+	add: (entity: EntityMp) => void;
+	addThisFrame: (entity: EntityMp) => void;
+
+	remove: (entity: EntityMp) => void;
+	removeThisFrame: (entity: EntityMp) => void;
+
+	destroy: () => void;
+}
 
 declare interface GetStatusOfLoadMissionCreatorPhotoResult {
 	p0: number;
@@ -1291,6 +1315,9 @@ declare interface GameGraphics extends GameGraphicsLegacy {
 	registerTextFontId(fontname: string): number;
 	setNumberPlateTexture(txDict: string, txName: string, txDictNormal: string, txNameNorma: string): void;
 	setParticleFxBloodScale(scale: number): void;
+
+	setEntityOverlayPassEnabled(enable: boolean): void;
+	createEntityOverlayBatch(params: IOverlayParams): IEntityOverlay;
 }
 
 declare interface GameGraphicsMp extends GameGraphics { }

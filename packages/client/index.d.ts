@@ -1695,6 +1695,7 @@ declare interface PedMpBase extends EntityMp {
 	setAlternateMovementAnim(stance: number, animDictionary: string, animationName: string, p4: number, p5: boolean): void;
 	setAmmoInClip(weapon: RageEnums.Hashes.Weapon | Hash, ammo: number): void;
 	setAngledDefensiveArea(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, fWidth: number, useCenterAsGoToPosition: boolean, applyToSecondaryDefensiveArea: boolean): void;
+	addArmourTo(amount: number): void;
 	setArmour(amount: number): void;
 	setAsCop(toggle: boolean): void;
 	setAsEnemy(toggle: boolean): void;
@@ -2501,7 +2502,7 @@ declare interface PlayerMp extends PedMpBase {
 
 	 * @returns boolean
 	 */
-	isPositionFrozen: boolean;
+	readonly isPositionFrozen: boolean;
 
 	/**
 	 * https://wiki.rage.mp/index.php?title=Player::setVoiceFx
